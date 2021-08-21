@@ -9,22 +9,31 @@ import ru.netology.entity.Country;
 public class TestGeoServiceImpl {
 
     @Test
-    void test_byIp(){
+    void test_byIp_rus(){
         String ipRussia = "172.157.48.100";
         Country expectedRussia = Country.RUSSIA;
-        String ipUSA = "96.85.89.75";
-        Country expectedUSA = Country.USA;
-        String ipLocalHost = "127.0.0.1";
-
         GeoServiceImpl geoService = new GeoServiceImpl();
 
         Country result = geoService.byIp(ipRussia).getCountry();
         Assertions.assertEquals(expectedRussia, result);
+    }
 
-        result = geoService.byIp(ipUSA).getCountry();
+    @Test
+    void test_byIp_usa(){
+        String ipUSA = "96.85.89.75";
+        Country expectedUSA = Country.USA;
+        GeoServiceImpl geoService = new GeoServiceImpl();
+
+        Country result = geoService.byIp(ipUSA).getCountry();
         Assertions.assertEquals(expectedUSA, result);
+    }
 
-        result = geoService.byIp(ipLocalHost).getCountry();
+    @Test
+    void test_byIp_local(){
+        String ipLocalHost = "127.0.0.1";
+        GeoServiceImpl geoService = new GeoServiceImpl();
+
+        Country result = geoService.byIp(ipLocalHost).getCountry();
         Assertions.assertNull(result);
     }
 

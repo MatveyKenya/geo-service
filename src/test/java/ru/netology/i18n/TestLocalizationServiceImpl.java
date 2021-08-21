@@ -7,14 +7,20 @@ import ru.netology.entity.Country;
 public class TestLocalizationServiceImpl {
 
     @Test
-    void test_locale(){
+    void test_locale_rus(){
 
         LocalizationServiceImpl localizationService = new LocalizationServiceImpl();
 
         String text = localizationService.locale(Country.RUSSIA);
         Assertions.assertTrue(isCyrillic(text));
+    }
 
-        text = localizationService.locale(Country.USA);
+    @Test
+    void test_locale_usa(){
+
+        LocalizationServiceImpl localizationService = new LocalizationServiceImpl();
+
+        String text = localizationService.locale(Country.USA);
         Assertions.assertFalse(isCyrillic(text));
 
     }
